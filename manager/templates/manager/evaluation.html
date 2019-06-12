@@ -1,0 +1,314 @@
+{% extends 'base2.html' %}
+{% block headtitle %} Evaluation {% endblock %}
+{% load staticfiles %}
+
+{% load crispy_forms_tags %}
+
+    {% include 'sidebar.html' %}
+
+
+          {% include 'header.html' %}
+
+ {% block maincontent %}
+<!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Performance evaluation</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">Go!</button>
+                          </span>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Staff performance <small>activities</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <!-- Tabs -->
+                    <p>This process will allow you to identify the staff members that contribute most to the monthly profit margins.</p>
+                    <div id="wizard" class="form_wizard wizard_horizontal">
+                      <ul class="wizard_steps">
+                        <li>
+                          <a href="#step-1">
+                            <span class="step_no">1</span>
+                            <span class="step_descr">
+                                              Step 1<br />
+                                              <small>Step 1 Visualization</small>
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#step-2">
+                            <span class="step_no">2</span>
+                            <span class="step_descr">
+                                              Step 2<br />
+                                              <small>Step 2 Rewarded staff</small>
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#step-3">
+                            <span class="step_no">3</span>
+                            <span class="step_descr">
+                                              Step 3<br />
+                                              <small>Step 3 Add reward for staff</small>
+                                          </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#step-4">
+                            <span class="step_no">4</span>
+                            <span class="step_descr">
+                                              Step 4<br />
+                                              <small>Step 4 description</small>
+                                          </span>
+                          </a>
+                        </li>
+                      </ul>
+                      <div id="step-1">
+                           <div class="row">
+                           <div id="comb_chart"></div>
+                             <div class="clearfix"></div>
+                               <div id="container"></div>
+
+                              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+
+
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+<!--                    <p>Add class <code>bulk_action</code> to table for bulk actions options on row select</p>-->
+
+<!--                    <div class="table-responsive">-->
+<!--                      <table class="table table-striped jambo_table bulk_action">-->
+<!--                        <thead>-->
+<!--                          <tr class="headings">-->
+<!--                            <th>-->
+<!--                              <input type="checkbox" id="check-all" class="flat">-->
+<!--                            </th>-->
+<!--                            <th class="column-title">Month </th>-->
+<!--                            <th class="column-title">Orders</th>-->
+<!--                            <th class="column-title">Deliveries </th>-->
+<!--                            <th class="column-title">Income Pays</th>-->
+<!--                            <th class="column-title">Expenses </th>-->
+<!--                            </th>-->
+<!--                            <th class="bulk-actions" colspan="7">-->
+<!--                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>-->
+<!--                            </th>-->
+<!--                          </tr>-->
+<!--                        </thead>-->
+
+<!--                        <tbody>-->
+
+<!--                          <tr class="even pointer">-->
+<!--                            <td class="a-center ">-->
+<!--                              <input type="checkbox" class="flat" name="table_records">-->
+<!--                            </td>-->
+<!--                              {% for entry in s1 %}-->
+<!--                            <td class=" ">{{ s1.month }}</td>-->
+<!--                            <td class=" ">{{ entry.count }}</td>-->
+<!--                            <td class=" ">{{ entry.count }}</td>-->
+<!--                            <td class=" ">{{ cost1.count }}</td>-->
+<!--                            <td class=" ">{{ cost1.count }}</td>-->
+<!--                              {% endfor %}-->
+<!--                            </td>-->
+<!--                          </tr>-->
+
+
+
+<!--                        </tbody>-->
+<!--                      </table>-->
+<!--                    </div>-->
+
+
+                  </div>
+                </div>
+              </div>
+                          </div>
+                      </div>
+                      <div id="step-2">
+                        <h2 class="StepTitle">Step 2 Content</h2>
+                        <form method="POST" class="form-horizontal form-label-left">
+
+                           {% csrf_token %}
+                          {{ form|crispy }}
+                         <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                          <button type="reset" class="btn btn-primary">Cancel</button>
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+
+                       </form>
+                      </div>
+                      <div id="step-3">
+                        <h2 class="StepTitle">Step 3 Content</h2>
+
+                          <p>Orders that have been recently registered. Some have been dealt with</p>
+
+                          <!-- start project list -->
+                          <table id="datatable" class="table table-striped projects">
+                            <thead>
+                              <tr>
+                                <th style="width: 1%">#</th>
+                                <th style="width: 1%">Staff</th>
+                                <th style="width: 20%">Assessment</th>
+                                <th>Duration</th>
+                                <th>Reward(Kshs)</th>
+                                <th style="width: 20%">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for reward in rewards %}
+                              <tr>
+                                <td>{{ reward.id }}</td>
+                                <td>{{ reward.staff }}</td>
+                                <td>
+                                    <a>{{ reward.amount_awarded }}</a>
+                                  <br />
+                                  <small>On: {{ reward.date_awarded }}</small>
+                                </td>
+                                <td>
+                                    {{ reward.duration }}
+                                </td>
+                                  <td>{{ reward.assessment }}</td>
+                                <td>
+
+                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                    <a class="delete_link btn btn-danger btn-xs" href="#" ><i class="fa fa-trash"></i> Delete </a>
+                                  </td>
+
+                              </tr>
+
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          <!-- end project list -->
+                      </div>
+                      <div id="step-4">
+                        <h2 class="StepTitle">Step 4 Content</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                      </div>
+
+                    </div>
+
+
+                    </div>
+                    <!-- End SmartWizard Content -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- /page content -->
+{% endblock %}
+{% block scriptfiles %}
+ <!-- jQuery Smart Wizard -->
+    <script src="{% static '/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js' %}"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script>
+Highcharts.chart('comb_chart', {
+  title: {
+    text: 'Combination chart'
+  },
+  xAxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  },
+  labels: {
+    items: [{
+
+      style: {
+        left: '50px',
+        top: '18px',
+        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+      }
+    }]
+  },
+  series: [{
+    type: 'column',
+    name: 'One',
+    data: [{% for entry in s1 %}{{ entry.count}}{% if not forloop.last %}, {% endif %} {% endfor %}]
+  }, {
+    type: 'column',
+    name: 'Two',
+    data: [{% for entry in s2 %}{{ entry.count}}{% if not forloop.last %}, {% endif %} {% endfor %}]
+  }, {
+    type: 'column',
+    name: 'Three',
+     data: [{% for entry in s3 %}{{ entry.count}}{% if not forloop.last %}, {% endif %} {% endfor %}]
+  }, {
+    type: 'column',
+    name: 'Four',
+    data: [{% for entry in s4 %}{{ entry.count}}{% if not forloop.last %}, {% endif %} {% endfor %}]
+  },{
+    type: 'column',
+    name: 'Five',
+    data: [{% for entry in s5 %}{{ entry.count}}{% if not forloop.last %}, {% endif %} {% endfor %}]
+  },
+   {
+    type: 'spline',
+    name: 'Total',
+    data: [{% for entry in deliv_query %}{{ entry.total}}{% if not forloop.last %}, {% endif %} {% endfor %}],
+    marker: {
+      lineWidth: 2,
+      lineColor: Highcharts.getOptions().colors[3],
+      fillColor: 'white'
+    }
+  }]
+});
+
+
+    </script>
+{% endblock %}

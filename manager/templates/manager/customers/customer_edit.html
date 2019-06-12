@@ -13,27 +13,14 @@
     <!-- page content -->
     <div class="right_col" role="main">
         <div class="">
-          {% if messages %}
-            {% for message in messages %}
-            <div {% if message.tags %} class="alert alert-{{message.tags}}">
-              <strong>{{message}}</strong>
 
-
-            </div>
-              {% endfor %}
-          {% else %}
 
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                    {% with url_name=request.resolver_match.url_name %}
-                    {% if url_name == 'customer-edit' %}
-                       <h2>Edit Customer</h2>
-                    {% elif url_name == 'customer-delete' %}
-                       <h2>Delete Customer</h2>
-                    {% endif %}
-                    {% endif %}
+
+
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>

@@ -59,13 +59,12 @@
                           <p>Orders that have been recently registered. Some have been dealt with</p>
       
                           <!-- start project list -->
-                          <table class="table table-striped projects">
+                          <table id="datatable" class="table table-striped projects">
                             <thead>
                               <tr>
                                 <th style="width: 1%">#</th>
+                                <th style="width: 1%">OrderNo</th>
                                 <th style="width: 20%">Customer Name</th>
-                                
-                                <th>Delivery date</th>
                                 <th>Total price</th>
                                 <th>Status</th>
                                 <th style="width: 20%">#Edit</th>
@@ -74,23 +73,33 @@
                             <tbody>
                                 {% for order in orders %}
                               <tr>
+                                <td>{{ order.id }}</td>
                                 <td>{{ order.orderNo }}</td>
                                 <td>
                                   <a>{{ order.customer }}</a>
                                   <br />
                                   <small>Ordered: {{ order.date_ordered }}</small>
                                 </td>
+<!--                                <td>-->
+<!--                                    {{ order.discount }}-->
+<!--                                </td>-->
+                                <td>{{ order.total_amount }}</td>
                                 <td>
-                                    {{ order.delivery_date }}
+                                  {% if order.status == 'Delivered' %}
+                                    <button type="button" class="btn btn-success btn-xs">Delivered </button>
+                                  {% elif order.status == 'Pending' %}
+                                    <button type="button" class="btn btn-warning btn-xs">Pending </button>
+                                  {% else %}
+                                    <button type="button" class="btn btn-danger btn-xs">Cancelled </button>
+                                  {% endif %}
                                 </td>
-                                <td>{{ order.total_price }}</td>
-                                <td>
-                                  <button type="button" class="btn btn-success btn-xs">Delivered </button>
-                                </td>
+<!--                                <td>-->
+<!--                                    {{ order.delivery_date }}-->
+<!--                                </td>-->
                                 <td>
                                     <a href="{% url 'order_detail' order.id %}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                    <a href="{% url 'order-new'  %}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                    <a href="{% url 'mstOrder_edit' order.id %}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                    <a class="delete_link btn btn-danger btn-xs" href="{% url 'order-delete' order.id %}" ><i class="fa fa-trash"></i> Delete </a>
                                   </td>
                                 
                               </tr>
@@ -99,6 +108,7 @@
                             </tbody>
                           </table>
                           <!-- end project list -->
+
       
                         </div>
                       </div>
@@ -107,5 +117,21 @@
                 </div>
               </div>
               <!-- /page content -->
-
+{% block scriptfiles %}
+      <script>
+        $(".delete_link").click(function(){
+        return confirm("Are you sure?")
+        });
+    </script>
+<script src="{% static '/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static '/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static '/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js' %}"></script>
+    <script src="{% static '/vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+    <script src="{% static '/vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static '/vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+ <script src="{% static '/vendors/jszip/dist/jszip.min.js' %}"></script>
+    <script src="{% static '/vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+    <script src="{% static '/vendors/pdfmake/build/vfs_fonts.js' %}"></script>
+{% endblock %}
           {% endblock %}

@@ -1,0 +1,117 @@
+{% extends 'base2.html' %}
+
+{% load staticfiles %}
+
+{% load crispy_forms_tags %}
+
+    {% include 'sidebar.html' %}
+
+
+          {% include 'header.html' %}
+
+          {% block maincontent %}
+ <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Edit Order <small>master</small></h3>
+              </div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+
+
+                  <div class="x_content">
+
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+
+<!--                      <ul class="stats-overview">-->
+<!--                        <li>-->
+<!--                          <span class="name"> Estimated budget </span>-->
+<!--                          <span class="value text-success"> 2300 </span>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                          <span class="name"> Total amount spent </span>-->
+<!--                          <span class="value text-success"> 2000 </span>-->
+<!--                        </li>-->
+<!--                        <li class="hidden-phone">-->
+<!--                          <span class="name"> Estimated project duration </span>-->
+<!--                          <span class="value text-success"> 20 </span>-->
+<!--                        </li>-->
+<!--                      </ul>-->
+
+
+                      <div>
+
+                         <form method="POST" class="form-horizontal form-label-left">
+                        <div class="col-md-6 col-md-offset-3">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                        </div>
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-6 col-md-offset-3">
+                        <button type="submit" class="btn btn-primary">Cancel</button>
+                        <button id="send" type="submit" class="btn btn-success">Submit</button>
+                      </div>
+                    </div>
+                  </form>
+
+                      </div>
+
+
+                    </div>
+
+                    <!-- start project-detail sidebar -->
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+
+                      <section class="panel">
+
+                        <div class="x_title">
+                          <h2>Products Ordered</h2>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-body">
+                          <h3 class="blue"><i class="fa fa-paint-brush"></i> Jetrendy</h3>
+
+                          <p> This Order has been attached to Invoice Number 98234. The payment expected is 9033. However it is Incomplete since it was taken on credit. Payment is due June 19 , 2019</p>
+                          <br />
+
+                          <div class="project_detail">
+                              <p class="title">The Products are as follows:</p>
+                            <ol>
+                                {% for ord in orderdtl %}
+                                <li> <a href="{% url 'orderDtl_edit' ord.id %}">{{ ord.product.title }}</a></li>
+                                {% endfor %}
+                            </ol>
+
+                          </div>
+
+                          <br />
+
+                          <div class="text-center mtop20">
+                            <a href="{% url 'order-new' %}" class="btn btn-sm btn-primary">Add produts</a>
+                            <a href="#" class="btn btn-sm btn-warning">Edit them</a>
+                          </div>
+                        </div>
+
+                      </section>
+
+                    </div>
+                    <!-- end project-detail sidebar -->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+{% endblock %}

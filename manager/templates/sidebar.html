@@ -28,25 +28,25 @@
             <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                    <li><a href="{% url 'customers' %}"><i class="fa fa-home"></i> Home </a>
+                     {% if request.user.is_superuser %}
+                    <li><a href="{% url 'index' %}"><i class="fa fa-home"></i> Home </a>
+                        {% else %}
+                    <li><a href="{% url 'admin-index' %}"><i class="fa fa-home"></i> Home </a>
+                       {% endif %}
                         
                     </li>
-                    <li><a><i class="fa fa-edit"></i> Products <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{% url 'products' %}">All Products</a></li>
-                            <li><a href="{% url 'collections' %}">Product Collections</a></li>
-                            
-                        </ul>
+                    <li><a href="{% url 'products' %}"><i class="fa fa-shopping-cart"></i> Products </a>
+
                     </li>
-                    <li><a><i class="fa fa-desktop"></i> Customers <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-users"></i> Customers <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{% url 'customers' %}">All Customers</a></li>
                             <li><a href="{% url 'customer-new' %}">Register Customers</a></li>
-                            <li><a href="{% url 'creditors' %}">Creditors</a></li>
+
                             
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-table"></i> Orders <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-rocket"></i> Orders <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{% url 'orders' %}">All orders</a></li>
                             <li><a href="{% url 'order-new' %}">Register Order</a></li>
@@ -54,29 +54,35 @@
                     </li>
                     <li><a><i class="fa fa-bar-chart-o"></i> Finances <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{% url 'expenses' %}">Expenses</a></li>
-                            <li><a href="{% url 'revenue' %}">Revenue</a></li>
-                            
+                            <li><a href="{% url 'costs' %}">Expenses</a></li>
+                            <li><a href="{% url 'income' %}">Income</a></li>
+                            <li><a href="{% url 'finance_analysis' %}">Analytics</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
+            {% if request.user.is_superuser %}
             <div class="menu_section">
                 <h3>Live On</h3>
                 <ul class="nav side-menu">
-                    <li><a><i class="fa fa-bug"></i> Social media marketing <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-cubes"></i> Social media marketing <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="e_commerce.html"> Facebook </a></li>
-                            <li><a href="e_commerce_backend.html">Instagram</a></li>
-                            <li><a href="projects.html">Projects</a></li>
-                            
- 
+                            <li><a href="{% url 'social_metrics' %}">Insights</a></li>
+
+
                         </ul>
                     </li>
-                    
-                    
+                    <li><a href="{% url 'recommendation' %}"><i class="fa fa-cogs"></i> Projection </a>
+                    </li>
+
+
                 </ul>
             </div>
+{% else %}
+
+{% endif %}
+
  
         </div>
  

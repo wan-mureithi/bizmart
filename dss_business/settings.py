@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import pytz
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) #top level project folder(dss_business)
@@ -26,7 +27,7 @@ SECRET_KEY = 'dfotcl&$75qv*v_uou0)klwtai%5ukzl-yk8(+#b3x3k8&0^^2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'django.contrib.sites',
-    'django_extensions',  #for the runserver_plus and openSSL
+    'django_extensions',  # for the runserver_plus and openSSL
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -128,7 +129,7 @@ WSGI_APPLICATION = 'dss_business.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dss_manager',
+        'NAME': 'smartbiz_db',
         'USER': 'root',
         'PASSWORD': 'pancake2018',
         'HOST': 'localhost',
@@ -161,7 +162,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
@@ -187,4 +188,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'manager/static/media')
 LOGIN_URL = '/accounts/login'   # to redirect a user when they are not logged in
 
 LOGIN_REDIRECT_URL = 'index/'
+
+HOME='business/'
 # AUTH_USER_MODEL = 'manager.LocalUser'  #creating a custom user.'

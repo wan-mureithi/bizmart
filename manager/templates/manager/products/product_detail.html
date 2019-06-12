@@ -59,23 +59,27 @@
                   <div class="col-md-7 col-sm-7 col-xs-12">
 
                     <div class="product-image">
-                      {% for image in images %}
+                    {% for image in images %}
                       <img src="{{ image.image.url }}" alt="..." />
+
                     </div>
+
                     <div class="product_gallery">
 
                       <a>
                         <img src="{{ image.image.url }}" alt="..." />
                       </a>
-                     {% endfor %}
+{% endfor %}
                     </div>
                   </div>
 
                   <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
 
-                    <h3 class="prod_title">{{ product.title }}</h3>
+                    <h3 class="prod_title">{{ product.collection }}</h3>
+                    <h4>{{ product.title }}</h4>
+                         <p>{{ product.description}}</p>
+                     <p>{{ product.collection.description}}</p>
 
-                    <p>{{ product.description}}</p>
                     <br />
 
                     <div class="">
@@ -102,82 +106,32 @@
                     </div>
                     <br />
 
-                    <div class="">
-                      <h2>Size <small>Please select one</small></h2>
-                      <ul class="list-inline prod_size">
-                        <li>
-                          <button type="button" class="btn btn-default btn-xs">Small</button>
-                        </li>
-                        <li>
-                          <button type="button" class="btn btn-default btn-xs">Medium</button>
-                        </li>
-                        <li>
-                          <button type="button" class="btn btn-default btn-xs">Large</button>
-                        </li>
-                        <li>
-                          <button type="button" class="btn btn-default btn-xs">Xtra-Large</button>
-                        </li>
-                      </ul>
-                    </div>
-                    <br />
 
                     <div class="">
                       <div class="product_price">
-                        <h1 class="price">Ksh80.00</h1>
-                        <span class="price-tax">Ex Tax: Ksh80.00</span>
+                        <h1 class="price">Kshs {{ product.buying_price }}</h1>
+                        <span class="price-tax">Selling at Kshs {{ product.sale_price }}</span>
                         <br>
                       </div>
                     </div>
 
-                    <div class="">
-                      <button type="button" class="btn btn-default btn-lg">Add to Cart</button>
-                      <button type="button" class="btn btn-default btn-lg">Add to Wishlist</button>
-                    </div>
+
 
                     <div class="product_social">
                       <ul class="list-inline">
-                        <li><a href="#"><i class="fa fa-facebook-square"></i></a>
+                        <li><a href="https://www.instagram.com/j.etrends/"><i class="fa fa-facebook-square"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-twitter-square"></i></a>
-                        </li>
+
                         <li><a href="#"><i class="fa fa-envelope-square"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-rss-square"></i></a>
-                        </li>
+
                       </ul>
                     </div>
 
                   </div>
 
 
-                  <div class="col-md-12">
 
-                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Home</a>
-                        </li>
-                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Profile</a>
-                        </li>
-                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
-                        </li>
-                      </ul>
-                      <div id="myTabContent" class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-                            synth. Cosby sweater eu banh mi, qui irure terr.</p>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                          <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk aliquip</p>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                          <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui
-                            photo booth letterpress, commodo enim craft beer mlkshk </p>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
                 </div>
               </div>
             </div>

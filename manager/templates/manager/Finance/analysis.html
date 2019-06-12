@@ -1,0 +1,286 @@
+{% extends 'base2.html' %}
+
+{% load staticfiles %}
+
+
+    {% include 'sidebar.html' %}
+
+
+          {% include 'header.html' %}
+
+
+{% block maincontent %}
+
+
+
+<!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Financial Assessment for year 2018</h2>
+
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+
+                      <ul class="stats-overview">
+                        <li>
+                          <span class="name"> Total Expenditure </span>
+                          <span class="value text-success"> 2300 </span>
+                        </li>
+                        <li>
+                          <span class="name"> Total Income </span>
+                          <span class="value text-success"> 2000 </span>
+                        </li>
+                        <li class="hidden-phone">
+                          <span class="name"> Profit Margin </span>
+                          <span class="value text-success"> 20 </span>
+                        </li>
+                      </ul>
+                      <br />
+
+                      <div id="container"></div>
+                         <br />
+                      <div>
+
+                        <h4>Recent Activity</h4>
+
+                     <div id="another"></div>
+
+                      </div>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Collection title </th>
+                          <th>Total Count </th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for c in order_products %}
+                        <tr>
+
+                          <td>{{ c.product__collection__title }}</td>
+                          <td>{{ c.count }}</td>
+
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+
+                    </div>
+
+                    <!-- start project-detail sidebar -->
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+
+                      <section class="panel">
+
+                        <div class="x_title">
+                          <h2>Summaries</h2>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-body">
+                          <h3 class="green"><i class="fa fa-paint-brush"></i> Glossary</h3>
+
+                          <p> How to assess the performance of your business:</p>
+                          <br />
+
+                          <div class="project_detail">
+
+                            <p class="title">Gross Profit Margin</p>
+                            <p>This is a performance metric used to assess the financial health of your business. It reveals
+                            the amount of money left over from sales after deducting the cost of products sold.
+                            A low gross profit margin tell you that your company cannot afford to pay for its expenses, the onwer probably uses
+                            part of their money to meet cost of production, which should not be the case. </p>
+                            <p class="title">Strategy for improvement</p>
+                            <p>Gross profit should be stable. When its not, increase the number of sales rather than unit sale price</p>
+                          </div>
+
+                          <br />
+                          <h4>Expense Types</h4>
+                          {% for ex in expense_types %}
+                          <ul class="list-unstyled project_files">
+                            <li> <strong> {{ ex.title }}: </strong> {{ex.total }} </li>
+                          </ul>
+
+                          {% endfor %}
+                          <br />
+
+
+                          <div class="text-center mtop20">
+                            <a href="#" class="btn btn-sm btn-primary">Add files</a>
+                            <a href="#" class="btn btn-sm btn-warning">Report contact</a>
+                          </div>
+                        </div>
+
+                      </section>
+
+                    </div>
+                    <!-- end project-detail sidebar -->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+   <!-- /page content -->
+{% block scriptfiles %}
+<script src="{% static '/vendors/validator/validator.js' %}"></script>
+ <!-- bootstrap-daterangepicker -->
+    <script src="{% static '/vendors/moment/min/moment.min.js' %}"></script>
+
+<!--    <script src="{% static '/vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>-->
+<!--    &lt;!&ndash; bootstrap-datetimepicker &ndash;&gt;-->
+<!--    <script src="{% static '/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}"></script>-->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script>
+Highcharts.chart('container', {
+  chart: {
+    zoomType: 'xy'
+  },
+  title: {
+    text: 'Monthly expenses with gross profit margin'
+  },
+  subtitle: {
+    text: 'Influence of expenses on gross profit margin '
+  },
+  xAxis: [{
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    crosshair: true
+  }],
+  yAxis: [{ // Primary yAxis
+    labels: {
+
+      style: {
+        color: Highcharts.getOptions().colors[1]
+      }
+    },
+    title: {
+      text: 'Gross Profit Margin',
+      style: {
+        color: Highcharts.getOptions().colors[1]
+      }
+    }
+  }, { // Secondary yAxis
+    title: {
+      text: 'Expenses',
+      style: {
+        color: Highcharts.getOptions().colors[0]
+      }
+    },
+    labels: {
+      format: '{value} Kshs',
+      style: {
+        color: Highcharts.getOptions().colors[0]
+      }
+    },
+    opposite: true
+  }],
+  tooltip: {
+    shared: true
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'left',
+    x: 120,
+    verticalAlign: 'top',
+    y: 100,
+    floating: true,
+    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255,255,255,0.25)'
+  },
+  series: [{
+    name: 'Expenses',
+    type: 'column',
+    yAxis: 1,
+    data: [{% for entry in expenses %}{{ entry.some }}{% if not forloop.last %}, {% endif %} {% endfor %}],
+
+    tooltip: {
+      valueSuffix: ' Kshs'
+    }
+
+  }, {
+    name: 'Profit',
+    type: 'spline',
+    data: [68.75, 35.94202898550725, -0.6944444444444444, -147.24137931034483, -41.228070175438596, 51.153846153846146, -1.6822429906542056, 30.32967032967033, 20.719424460431654, 18.432510885341074, 52.27400336889389, 91.57894736842105],
+
+  }]
+});
+
+
+   Highcharts.chart('another', {
+  title: {
+    text: 'Income and expenses'
+  },
+  xAxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  },
+  labels: {
+    items: [{
+
+      style: {
+        left: '50px',
+        top: '18px',
+        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+      }
+    }]
+  },
+  series: [{
+    type: 'column',
+    name: 'Expenses',
+    data: [{% for entry in expenses %}{{ entry.some}}{% if not forloop.last %}, {% endif %} {% endfor %}]
+  }, {
+    type: 'column',
+    name: 'Income',
+    data: [{% for entry in incomes %}{{ entry.some}}{% if not forloop.last %}, {% endif %} {% endfor %}]
+  }, {
+    type: 'spline',
+    name: 'Average',
+    data: [{% for entry in order_query %}{{ entry.total}}{% if not forloop.last %}, {% endif %} {% endfor %}],
+    marker: {
+      lineWidth: 2,
+      lineColor: Highcharts.getOptions().colors[3],
+      fillColor: 'white'
+    }
+  }, ]
+});
+
+</script>
+{% endblock %}
+
+{% endblock %}

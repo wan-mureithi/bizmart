@@ -17,6 +17,8 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from manager import  views as manager_views
+from django.conf.urls import handler404, handler500
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,3 +26,7 @@ urlpatterns = [
     url(r'index/',include('accounts.urls')),
     url(r'^business/',include('manager.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = manager_views.error_404
+handler500 = manager_views.error_500
+
